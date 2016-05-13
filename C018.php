@@ -22,7 +22,5 @@ for($i=0;$i<$n;$i++){
     exit;
   }
 }
-
 echo min($num)."\n"; //$numの最小値を表示
-
 ?>
