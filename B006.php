@@ -4,28 +4,17 @@
 
   $g = 9.8; //重力加速度？
 
-  // $aaa = $o_y + tan($x)
-  $l = ($o_y + tan(deg2rad($theta)) * $x);
-  $r = ($g * pow($x, 2));
+  $right =  ($g * pow($x, 2)) / (2 * (pow($s, 2)) * pow(cos(deg2rad($theta)), 2)); //右辺の式
+  $left = ($o_y + tan(deg2rad($theta)) * $x); //左辺の式
+  $hit = $left - $right;
 
+  $distance = abs($y - $hit); //的の中心より高いところに刺さったら負の数になるので絶対値にする
 
-  $tan_theta = cos($theta) * pow(10, 1);
-  $tan_theta = floor($tan_theta);
-  $tan_theta = $tan_theta / pow(10 ,1);
+  // echo $distance."\n";
 
-
-  // echo $tan_theta;
-
-  $a = 2 * (pow($s, 2)) * $tan_theta;
-
-  $b =  $r / $a;
-
-  $aaaa= $l - $b;
-
-  // echo $aaaa;
-  // Techo $a;
-  // echo cos($theta);
-
-  echo round($y - $aaaa,2);
-
+  if($distance <= ($size - 0.1) / 2){
+    echo "Hit ".round($distance, 1);
+  }else{
+    echo "Miss";
+  }
 ?>
